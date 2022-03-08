@@ -10,8 +10,16 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = () => {
-  return news.get(`/articles`).then(({ data: { articles } }) => {
-    return articles;
-  });
+export const getArticles = (topic) => {
+  if (topic) {
+    return news
+      .get(`/articles?topic=${topic}`)
+      .then(({ data: { articles } }) => {
+        return articles;
+      });
+  } else {
+    return news.get(`/articles`).then(({ data: { articles } }) => {
+      return articles;
+    });
+  }
 };

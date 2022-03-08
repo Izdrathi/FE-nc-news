@@ -12,6 +12,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<ArticlesList />} />
+        <Route path={"/articles/:slug"} element={<ArticlesList />} />
       </Routes>
     </div>
   );
