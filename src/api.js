@@ -23,3 +23,9 @@ export const getArticles = (topic) => {
     });
   }
 };
+
+export const getArticleById = (article_id) => {
+  return news.get(`/articles/${article_id}`).then(({ data: { article } }) => {
+    return article;
+  });
+};
