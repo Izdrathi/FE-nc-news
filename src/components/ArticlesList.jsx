@@ -32,6 +32,7 @@ export default function ArticlesList() {
           return (
             <ArticleCard
               key={article_id}
+              article_id={article_id}
               title={title}
               body={body}
               topic={topic}

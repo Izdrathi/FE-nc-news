@@ -19,7 +19,7 @@ export default function Nav() {
       <ul className="dib">
         <li className="f6 f5-l bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l">
           <Link className="no-underline" to={`/`}>
-            home
+            Home
           </Link>
         </li>
         {topics.map(({ slug }) => {
@@ -28,7 +28,7 @@ export default function Nav() {
               key={slug}
               className="f6 f5-l bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l"
             >
-              <Link className="no-underline" to={`/articles/${slug}`}>
+              <Link className="no-underline ttc" to={`/articles/${slug}`}>
                 {slug}
               </Link>
             </li>
