@@ -12,7 +12,7 @@ export default function ArticleCard({
   return (
     <article className="bg-light-gray center mw6 ba b--black-10 mv4 outline w-80 pa5">
       <h3 className="link dim lh-title pointer underline dark-blue">
-        <Link to={`articles=${article_id}`}>{title}</Link>
+        <Link to={`/articles=${article_id}`}>{title}</Link>
       </h3>
       <p className="b ttc">{topic}</p>
       <p>By: {author}</p>
