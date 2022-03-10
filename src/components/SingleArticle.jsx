@@ -6,6 +6,7 @@ export default function SingleArticle() {
   const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState(null);
+  const [voteChange, setVoteChange] = useState(0);
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -15,26 +16,27 @@ export default function SingleArticle() {
     });
   }, [article_id]);
 
+  console.log(voteChange);
   const handleClick = (article_id, votesNumber) => {
-    api
-      .patchArticleKudos(article_id, votesNumber)
-      .then((article) => {
-        article.votes += votesNumber;
-        setErr(null);
-        api.getArticleById(article_id).then((article) => {
-          setArticle(article);
-          setIsLoading(false);
-        });
-      })
-      .catch((err) => {
-        setArticle((article) => {
-          article.votes -= votesNumber;
-          setErr("Something went wrong, please try again.");
-        });
+    setVoteChange((currentVote) => {
+      return (currentVote += votesNumber);
+    });
+    setArticle((article) => {
+      const articleCopy = { ...article };
+      articleCopy.votes += votesNumber;
+      setErr(null);
+      return articleCopy;
+    });
+    api.patchArticleKudos(article_id, votesNumber).catch((err) => {
+      setArticle((article) => {
+        const articleCopy = { ...article };
+        articleCopy.votes -= votesNumber;
+        setErr("Something went wrong, please try again.");
+        return articleCopy;
       });
+    });
   };
 
-  if (err) return <p>{err}</p>;
   if (isLoading) return <p>loading..</p>;
 
   return (
@@ -48,12 +50,21 @@ export default function SingleArticle() {
         <dt className="pa2">{article.created_at.slice(0, 10)}</dt>
         <section>
           <h4 className="pa2">Kudos: {article.votes}</h4>
-          <button className="ma2" onClick={() => handleClick(article_id, 1)}>
+          <button
+            className="ma2"
+            disabled={voteChange >= 1}
+            onClick={() => handleClick(article_id, 1)}
+          >
             Add kudos
           </button>
-          <button className="ma2" onClick={() => handleClick(article_id, -1)}>
+          <button
+            className="ma2"
+            disabled={voteChange <= -1}
+            onClick={() => handleClick(article_id, -1)}
+          >
             Take kudos
           </button>
+          {err ? <p>{err}</p> : null}
         </section>
       </dl>
     </article>
