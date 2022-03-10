@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as api from "../api";
+import * as api from "../utils/api.js";
 import { Link } from "react-router-dom";
 
 export default function Nav() {
