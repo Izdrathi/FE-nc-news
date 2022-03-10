@@ -29,3 +29,11 @@ export const getArticleById = (article_id) => {
     return article;
   });
 };
+
+export const patchArticleKudos = (articleId, kudos) => {
+  return news
+    .patch(`/articles/${articleId}`, { inc_votes: kudos })
+    .then(({ data: { article } }) => {
+      return article;
+    });
+};

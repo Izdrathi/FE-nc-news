@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard.jsx";
-import * as api from "../api";
+import * as api from "../utils/api.js";
 import { useParams } from "react-router-dom";
 
 export default function ArticlesList() {
