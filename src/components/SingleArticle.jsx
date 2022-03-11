@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as api from "../utils/api.js";
 import { useParams } from "react-router-dom";
+import Comments from "./Comments.jsx";
 
 export default function SingleArticle() {
   const [article, setArticle] = useState([]);
@@ -40,16 +41,15 @@ export default function SingleArticle() {
   if (isLoading) return <p>loading..</p>;
 
   return (
-    <article className="bg-light-gray center mw6 ba b--black-10 mv4 outline w-80 pa5">
-      <h3 className="dark-blue">{article.title}</h3>
+    <article className="bg-washed-blue center mw6 ba b--black-10 mv4 w20 outline pa1">
+      <h3 className="darkest-blue">{article.title}</h3>
       <dl>
         <dt className="b ttc">{article.topic}</dt>
         <dt className="pa3">By: {article.author}</dt>
-        <dd className="pa2 tj">{article.body}</dd>
-        <dt className="pa2">Comments: {article.comment_count}</dt>
         <dt className="pa2">{article.created_at.slice(0, 10)}</dt>
+        <dd className="pa2 tl">{article.body}</dd>
         <section>
-          <h4 className="pa2">Kudos: {article.votes}</h4>
+          <h3 className="pa2">Kudos: {article.votes}</h3>
           <button
             className="ma2"
             disabled={voteChange >= 1}
@@ -67,6 +67,8 @@ export default function SingleArticle() {
           {err ? <p>{err}</p> : null}
         </section>
       </dl>
+      <h3>Comments: {article.comment_count}</h3>
+      <Comments article_id={article_id} />
     </article>
   );
 }
