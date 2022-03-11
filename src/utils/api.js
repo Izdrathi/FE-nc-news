@@ -37,3 +37,11 @@ export const patchArticleKudos = (articleId, kudos) => {
       return article;
     });
 };
+
+export const getCommentsByArticle = (article_id) => {
+  return news
+    .get(`/articles/${article_id}/comments`)
+    .then(({ data: { comments } }) => {
+      return comments;
+    });
+};
