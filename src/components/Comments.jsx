@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as api from "../utils/api.js";
 import { useParams } from "react-router-dom";
+import CommentAdder from "./CommentAdder.jsx";
 
 export default function CategoryList() {
   const [comments, setComments] = useState([]);
@@ -17,6 +18,7 @@ export default function CategoryList() {
   if (isLoading) return <p>loading..</p>;
   return (
     <section>
+      <CommentAdder setComments={setComments} article_id={article_id} />
       {comments.map(({ body, author, votes, created_at, comment_id }) => {
         return (
           <article key={comment_id} className="bg-white center mw6 ba bw1 mv4">
@@ -24,7 +26,7 @@ export default function CategoryList() {
             <dl>
               <dd className="ma2 tj">{body}</dd>
               <dt>Votes: {votes}</dt>
-              <dt>{created_at.slice(0, 10)}</dt>
+              {/* <dt>{created_at.slice(0, 10)}</dt> */}
             </dl>
           </article>
         );

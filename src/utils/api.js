@@ -45,3 +45,11 @@ export const getCommentsByArticle = (article_id) => {
       return comments;
     });
 };
+
+export const postComments = (article_id, comment) => {
+  return news
+    .post(`/articles/${article_id}/comments`, comment)
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
+};

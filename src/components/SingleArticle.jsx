@@ -17,7 +17,6 @@ export default function SingleArticle() {
     });
   }, [article_id]);
 
-  console.log(voteChange);
   const handleClick = (article_id, votesNumber) => {
     setVoteChange((currentVote) => {
       return (currentVote += votesNumber);
