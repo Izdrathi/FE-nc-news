@@ -4,20 +4,28 @@ import { useParams } from "react-router-dom";
 import Comments from "./Comments.jsx";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import ErrorPage from "./ErrorPage.jsx";
 
 export default function SingleArticle() {
     const [article, setArticle] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [err, setErr] = useState(null);
+    const [pageErr, setPageErr] = useState(null);
     const [voteChange, setVoteChange] = useState(0);
     const { article_id } = useParams();
     const { loggedInUser } = useContext(UserContext);
 
     useEffect(() => {
-        api.getArticleById(article_id).then((article) => {
-            setArticle(article);
-            setIsLoading(false);
-        });
+        api.getArticleById(article_id)
+            .then((article) => {
+                setArticle(article);
+                setIsLoading(false);
+                setPageErr(null);
+            })
+            .catch((error) => {
+                setPageErr(error);
+                setIsLoading(false);
+            });
     }, [article_id]);
 
     const handleClick = (article_id, votesNumber) => {
@@ -44,6 +52,7 @@ export default function SingleArticle() {
     };
 
     if (isLoading) return <p>loading..</p>;
+    if (pageErr) return <ErrorPage />;
 
     return (
         <article className="bg-white center mw6 ba b--black-10 mv4 w20 outline pa1">

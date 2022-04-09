@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import ArticlesList from "./components/ArticlesList.jsx";
 import Nav from "./components/Nav.jsx";
 import SingleArticle from "./components/SingleArticle.jsx";
+import SortedArticles from "./components/SortedArticles.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 import { UserContext } from "./context/UserContext.js";
 
 function App() {
@@ -23,9 +25,14 @@ function App() {
                         element={<ArticlesList />}
                     />
                     <Route
+                        path={"/articles/sort/:sortedby"}
+                        element={<SortedArticles />}
+                    />
+                    <Route
                         path={"/articles=:article_id"}
                         element={<SingleArticle />}
                     />
+                    <Route path={"*"} element={<ErrorPage />} />
                 </Routes>
             </div>
         </UserContext.Provider>

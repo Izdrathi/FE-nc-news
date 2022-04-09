@@ -10,9 +10,10 @@ export default function Comments() {
     const [isLoading, setIsLoading] = useState(true);
     const { article_id } = useParams();
     const { loggedInUser } = useContext(UserContext);
-    const [error, setError] = useState(null);
+    const [err, setError] = useState(null);
 
     useEffect(() => {
+        setIsLoading(true);
         api.getCommentsByArticle(article_id)
             .then((comments) => {
                 setComments(comments);
@@ -43,7 +44,7 @@ export default function Comments() {
     };
 
     if (isLoading) return <p>loading..</p>;
-    if (error) return <p>{error}</p>;
+    if (err) return <p>{err}</p>;
 
     return (
         <section>

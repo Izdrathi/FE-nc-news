@@ -39,6 +39,7 @@ export default function CommentAdder({ setComments, article_id }) {
             </div>
         );
     }
+
     return (
         <>
             <form onSubmit={handleSubmit}>
