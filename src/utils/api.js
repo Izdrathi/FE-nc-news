@@ -9,19 +9,6 @@ export const getTopics = () => {
         return topics;
     });
 };
-// export const getArticles = (topic) => {
-//     if (topic) {
-//         return news
-//             .get(`/articles?topic=${topic}`)
-//             .then(({ data: { articles } }) => {
-//                 return articles;
-//             });
-//     } else {
-//         return news.get(`/articles`).then(({ data: { articles } }) => {
-//             return articles;
-//         });
-//     }
-// };
 export const getArticles = (slug, sort, order) => {
     return news
         .get(`/articles`, {
@@ -34,21 +21,11 @@ export const getArticles = (slug, sort, order) => {
 
 export function fetchSortedArticlesByParams(params) {
     return news
-        .get(`/articles/?sortby=${params[0]}&order=${params[1]}`)
+        .get(`/articles?sort_by=${params[0]}&order=${params[1]}`)
         .then((response) => {
             return response.data;
         });
 }
-
-// export const getArticlesByTopic = (topic, sort, order) => {
-//     return news
-//         .get(`/articles?topic=${topic}`, {
-//             params: { topic: topic, sort_by: sort, order: order },
-//         })
-//         .then(({ data: { articles } }) => {
-//             return articles;
-//         });
-// };
 
 export const getArticleById = (article_id) => {
     return news.get(`/articles/${article_id}`).then(({ data: { article } }) => {
@@ -85,11 +62,3 @@ export function deleteComment(comment_id) {
         return response.data;
     });
 }
-
-// export function getArticlesSortedByParams(params) {
-//     return news
-//         .get(`/articles/?sortby=${params[0]}&order=${params[1]}`)
-//         .then((response) => {
-//             return response.data;
-//         });
-// }

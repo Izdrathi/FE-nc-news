@@ -8,11 +8,11 @@ export default function ArticlesList() {
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [err, setErr] = useState(null);
-    const { slug, sort, order } = useParams();
+    const { slug } = useParams();
 
     useEffect(() => {
         setIsLoading(true);
-        api.getArticles(slug, sort, order).then((articles) => {
+        api.getArticles(slug).then((articles) => {
             if (articles.length === 0) {
                 setErr("error");
                 setIsLoading(false);
@@ -22,42 +22,44 @@ export default function ArticlesList() {
                 setErr(null);
             }
         });
-    }, [slug, sort, order]);
+    }, [slug]);
 
     if (isLoading) return <p>loading..</p>;
     if (err) return <ErrorPage />;
 
     return (
-        <section className="ArticlesList">
-            <div>
+        <>
+            <span>
                 <Link to="/articles/sort/:sortedby">Sort articles</Link>
-            </div>
-            {articles.map(
-                ({
-                    article_id,
-                    title,
-                    body,
-                    topic,
-                    author,
-                    votes,
-                    created_at,
-                    comment_count,
-                }) => {
-                    return (
-                        <ArticleCard
-                            key={article_id}
-                            article_id={article_id}
-                            title={title}
-                            body={body}
-                            topic={topic}
-                            author={author}
-                            votes={votes}
-                            created_at={created_at}
-                            comment_count={comment_count}
-                        />
-                    );
-                }
-            )}
-        </section>
+            </span>
+            <section className="ArticlesList">
+                {articles.map(
+                    ({
+                        article_id,
+                        title,
+                        body,
+                        topic,
+                        author,
+                        votes,
+                        created_at,
+                        comment_count,
+                    }) => {
+                        return (
+                            <ArticleCard
+                                key={article_id}
+                                article_id={article_id}
+                                title={title}
+                                body={body}
+                                topic={topic}
+                                author={author}
+                                votes={votes}
+                                created_at={created_at}
+                                comment_count={comment_count}
+                            />
+                        );
+                    }
+                )}
+            </section>
+        </>
     );
 }

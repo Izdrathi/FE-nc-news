@@ -15,7 +15,7 @@ export default function CommentAdder({ setComments, article_id }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const newComment = {
-            username: "jessjelly",
+            username: loggedInUser.username,
             body: comment,
         };
         setErr(false);
@@ -28,7 +28,7 @@ export default function CommentAdder({ setComments, article_id }) {
                 });
             })
             .catch((err) => {
-                setErr(true);
+                setErr(err);
             });
     };
 
