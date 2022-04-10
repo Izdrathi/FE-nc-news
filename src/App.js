@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
-import Header from "./components/Header.jsx";
+import Header from "./components/main/Header.jsx";
 import { Routes, Route } from "react-router-dom";
-import ArticlesList from "./components/ArticlesList.jsx";
-import Nav from "./components/Nav.jsx";
-import SingleArticle from "./components/SingleArticle.jsx";
-import SortedArticles from "./components/SortedArticles.jsx";
-import ErrorPage from "./components/ErrorPage.jsx";
+import ArticlesList from "./components/articles/ArticlesList.jsx";
+import Nav from "./components/main/Nav.jsx";
+import SingleArticle from "./components/articles/SingleArticle.jsx";
+import ErrorPage from "./components/error/ErrorPage.jsx";
 import { UserContext } from "./context/UserContext.js";
+import Footer from "./components/main/Footer";
+import Topics from "./components/topics/Topics";
 
 function App() {
     const [loggedInUser, setLoggedInUser] = useState("");
@@ -20,20 +21,14 @@ function App() {
                 <Nav />
                 <Routes>
                     <Route path="/" element={<ArticlesList />} />
-                    <Route
-                        path={"/articles/:slug"}
-                        element={<ArticlesList />}
-                    />
-                    <Route
-                        path={"/articles/sort/:sortedby"}
-                        element={<SortedArticles />}
-                    />
+                    <Route path={"/articles/:slug"} element={<Topics />} />
                     <Route
                         path={"/articles=:article_id"}
                         element={<SingleArticle />}
                     />
                     <Route path={"*"} element={<ErrorPage />} />
                 </Routes>
+                <Footer />
             </div>
         </UserContext.Provider>
     );
