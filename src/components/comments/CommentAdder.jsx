@@ -53,11 +53,15 @@ export default function CommentAdder({ setComments, article_id }) {
                         onChange={handleChange}
                     />
                 </label>
-                <button className="button is-primary is-outlined" type="submit">
+                <button className="button is-success is-outlined" type="submit">
                     Submit
                 </button>
             </form>
-            {err ? <h4>Your comment was not posted</h4> : null}
+            {err ? (
+                <h4 className="notification is-danger is-light">
+                    Your comment was not posted
+                </h4>
+            ) : null}
         </>
     );
 }

@@ -32,7 +32,7 @@ export default function Nav() {
             <div className="navbar-start">
                 <ul className="navbar-item mx-5">
                     <li className="navbar-item mx-5">
-                        <Link className="has-text-light" to={`/`}>
+                        <Link className="has-text-light is-size-4" to={`/`}>
                             Home
                         </Link>
                     </li>
@@ -40,7 +40,7 @@ export default function Nav() {
                         return (
                             <li className="navbar-item mx-5" key={slug}>
                                 <Link
-                                    className="has-text-light"
+                                    className="has-text-light is-size-4"
                                     to={`/articles/${slug}`}
                                 >
                                     {slug}

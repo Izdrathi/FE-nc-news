@@ -12,7 +12,7 @@ export const Sorting = ({ setSort, setOrder }) => {
 
     return (
         <div className="control has-background-white">
-            <label className="mx-3">Choose articles by:</label>
+            <label className="mx-3 is-size-4">Sort articles by:</label>
             <div className="select">
                 <select
                     value={currentValue}

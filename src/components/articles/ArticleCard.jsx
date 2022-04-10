@@ -11,12 +11,12 @@ export default function ArticleCard({
 }) {
     return (
         <article>
-            <h3>
+            <h4 className="is-size-5">
                 <Link to={`/articles=${article_id}`}>{title}</Link>
-            </h3>
+            </h4>
             <dl>
-                <dt>{topic}</dt>
-                <dt>By: {author}</dt>
+                <dt className="is-uppercase">{topic}</dt>
+                <dt className="has-text-weight-bold">By: {author}</dt>
                 <dt>{created_at.slice(0, 10)}</dt>
                 <dt>Kudos: {votes}</dt>
                 <dt>Comments: {comment_count}</dt>

@@ -57,27 +57,27 @@ export default function SingleArticle() {
     return (
         <div className="column is-half is-offset-one-quarter">
             <article className="box">
-                <h3 className="card-header-title is-centered">
+                <h3 className="card-header-title is-centered is-size-3">
                     {article.title}
                 </h3>
                 <dl>
-                    <dt className="is-uppercase">{article.topic}</dt>
+                    <dt className="is-uppercase is-size-4">{article.topic}</dt>
                     <dt className="has-text-weight-bold">
                         By: {article.author}
                     </dt>
                     <dt>{article.created_at.slice(0, 10)}</dt>
-                    <dd>{article.body}</dd>
-                    <section>
+                    <dd className="pb-5">{article.body}</dd>
+                    <section className="is-inline-flex pb-5">
                         <h4 className="is-size-4">Kudos: {article.votes}</h4>
                         <button
-                            className="button is-primary is-outlined mx-4"
+                            className="button is-link is-outlined mx-4"
                             disabled={voteChange >= 1}
                             onClick={() => handleClick(article_id, 1)}
                         >
                             Add kudos
                         </button>
                         <button
-                            className="button is-primary is-outlined mx-4"
+                            className="button is-link is-outlined mr-4"
                             disabled={voteChange <= -1}
                             onClick={() => handleClick(article_id, -1)}
                         >
