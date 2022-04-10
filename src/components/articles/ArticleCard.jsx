@@ -10,12 +10,12 @@ export default function ArticleCard({
     comment_count,
 }) {
     return (
-        <article className="bg-white center mw6 ba b--black-10 mv4 outline w-80 pa5">
-            <h3 className="link dim lh-title pointer underline dark-blue">
+        <article>
+            <h3>
                 <Link to={`/articles=${article_id}`}>{title}</Link>
             </h3>
             <dl>
-                <dt className="b ttc">{topic}</dt>
+                <dt>{topic}</dt>
                 <dt>By: {author}</dt>
                 <dt>{created_at.slice(0, 10)}</dt>
                 <dt>Kudos: {votes}</dt>

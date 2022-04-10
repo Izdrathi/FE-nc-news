@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import * as api from "../utils/api.js";
+import * as api from "../../utils/api.js";
 import { useParams } from "react-router-dom";
 import CommentAdder from "./CommentAdder.jsx";
 import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
+import ErrorPage from "../error/ErrorPage.jsx";
 
 export default function Comments() {
     const [comments, setComments] = useState([]);
@@ -44,31 +45,28 @@ export default function Comments() {
     };
 
     if (isLoading) return <p>loading..</p>;
-    if (err) return <p>{err}</p>;
+    if (err) return <ErrorPage />;
 
     return (
         <section>
             <CommentAdder setComments={setComments} article_id={article_id} />
             {comments.map(({ body, author, votes, created_at, comment_id }) => {
                 return (
-                    <article
-                        key={comment_id}
-                        className="bg-white center mw6 ba bw1 mv4"
-                    >
-                        <h4>{author}</h4>
+                    <article className="box" key={comment_id}>
+                        <h4 className="has-text-weight-bold">{author}</h4>
                         <dl>
-                            <dd className="ma2 tj">{body}</dd>
+                            <dd>{body}</dd>
+                            <dt>Votes: {votes}</dt>
+                            <dt>{created_at.slice(0, 10)}</dt>
                             {loggedInUser.username === author ? (
                                 <button
-                                    className="f6 link br-pill ph3 pv2 mb2 dib black bg-washed-red pointer"
+                                    className="button is-danger is-small"
                                     value={comment_id}
                                     onClick={handleDelete}
                                 >
-                                    Delete comment
+                                    Delete
                                 </button>
                             ) : null}
-                            <dt>Votes: {votes}</dt>
-                            <dt>{created_at.slice(0, 10)}</dt>
                         </dl>
                     </article>
                 );

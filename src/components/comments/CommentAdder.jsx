@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import * as api from "../utils/api.js";
+import * as api from "../../utils/api.js";
 import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 
 export default function CommentAdder({ setComments, article_id }) {
     const [comment, setComment] = useState("");
@@ -35,25 +35,29 @@ export default function CommentAdder({ setComments, article_id }) {
     if (!loggedInUser.username) {
         return (
             <div>
-                <p> You need to be logged in to post comments</p>
+                <p className="notification is-danger is-light">
+                    You need to be logged in to post comments
+                </p>
             </div>
         );
     }
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label className="db">
+            <form className="pt-5 pb-5" onSubmit={handleSubmit}>
+                <label className="is-underlined is-size-4">
                     Add your comment:
                     <textarea
-                        className="db center ma1"
+                        className="textarea pb-5"
                         value={comment}
                         onChange={handleChange}
                     />
                 </label>
-                <button type="submit">Submit</button>
+                <button className="button is-primary is-outlined" type="submit">
+                    Submit
+                </button>
             </form>
-            {err ? <h4 className="red">Your comment was not posted</h4> : null}
+            {err ? <h4>Your comment was not posted</h4> : null}
         </>
     );
 }

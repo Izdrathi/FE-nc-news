@@ -19,13 +19,15 @@ export const getArticles = (slug, sort, order) => {
         });
 };
 
-export function fetchSortedArticlesByParams(params) {
+export const getArticlesByTopic = (slug, sort, order) => {
     return news
-        .get(`/articles?sort_by=${params[0]}&order=${params[1]}`)
-        .then((response) => {
-            return response.data;
+        .get(`/articles?topic=${slug}`, {
+            params: { sort_by: sort, order: order },
+        })
+        .then(({ data: { articles } }) => {
+            return articles;
         });
-}
+};
 
 export const getArticleById = (article_id) => {
     return news.get(`/articles/${article_id}`).then(({ data: { article } }) => {
