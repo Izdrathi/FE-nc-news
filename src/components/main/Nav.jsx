@@ -14,6 +14,10 @@ export default function Nav() {
         setLoggedInUser(user);
     };
 
+    function Capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     useEffect(() => {
         api.getTopics().then((topics) => {
             setTopic(topics);
@@ -21,7 +25,7 @@ export default function Nav() {
         });
     }, []);
 
-    if (isLoading) return <p>loading..</p>;
+    if (isLoading) return <span className="is-size-2">Loading..</span>;
 
     return (
         <nav
@@ -43,7 +47,7 @@ export default function Nav() {
                                     className="has-text-light is-size-4"
                                     to={`/articles/${slug}`}
                                 >
-                                    {slug}
+                                    {Capitalize(slug)}
                                 </Link>
                             </li>
                         );

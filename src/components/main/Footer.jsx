@@ -4,7 +4,10 @@ export default function Footer() {
             <div className="content has-text-centered ">
                 <p className="has-text-light is-size-4">
                     <strong className="has-text-light">NC News</strong> by{" "}
-                    <a href="https://github.com/Izdrathi/FE-nc-news">
+                    <a
+                        className="has-text-warning"
+                        href="https://github.com/Izdrathi/FE-nc-news"
+                    >
                         Agnieszka Gawron
                     </a>
                     . Project for Northcoders bootcamp.

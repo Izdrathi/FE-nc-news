@@ -27,7 +27,7 @@ export default function ArticlesList() {
         });
     }, [slug, sort, order]);
 
-    if (isLoading) return <p>loading..</p>;
+    if (isLoading) return <span className="is-size-2">Loading..</span>;
     if (err) return <ErrorPage />;
 
     return (
@@ -46,7 +46,7 @@ export default function ArticlesList() {
                         comment_count,
                     }) => {
                         return (
-                            <div className="box">
+                            <div className="box" key={article_id}>
                                 <ArticleCard
                                     key={article_id}
                                     article_id={article_id}

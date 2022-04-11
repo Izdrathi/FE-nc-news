@@ -51,7 +51,7 @@ export default function SingleArticle() {
         });
     };
 
-    if (isLoading) return <p>loading..</p>;
+    if (isLoading) return <span className="is-size-2">Loading..</span>;
     if (pageErr) return <ErrorPage />;
 
     return (

@@ -27,7 +27,7 @@ export default function Topics() {
         });
     }, [slug, sort, order]);
 
-    if (isLoading) return <p>loading..</p>;
+    if (isLoading) return <span className="is-size-2">Loading..</span>;
     if (err) return <ErrorPage />;
 
     return (
