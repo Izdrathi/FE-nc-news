@@ -15,8 +15,7 @@ export default function CommentAdder({ setComments, article_id }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const newComment = {
-            username: "jessjelly",
-            // username: loggedInUser.username,
+            username: loggedInUser.username,
             body: comment,
         };
         setErr(false);
