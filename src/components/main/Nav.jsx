@@ -25,8 +25,6 @@ export default function Nav() {
         });
     }, []);
 
-    if (isLoading) return <span className="is-size-2">Loading..</span>;
-
     return (
         <nav
             className="navbar is-dark"
@@ -40,18 +38,22 @@ export default function Nav() {
                             Home
                         </Link>
                     </li>
-                    {topics.map(({ slug }) => {
-                        return (
-                            <li className="navbar-item mx-5" key={slug}>
-                                <Link
-                                    className="has-text-light is-size-4"
-                                    to={`/articles/${slug}`}
-                                >
-                                    {Capitalize(slug)}
-                                </Link>
-                            </li>
-                        );
-                    })}
+                    {isLoading ? (
+                        <li className="has-text-light is-size-4">Loading...</li>
+                    ) : (
+                        topics.map(({ slug }) => {
+                            return (
+                                <li className="navbar-item mx-5" key={slug}>
+                                    <Link
+                                        className="has-text-light is-size-4"
+                                        to={`/articles/${slug}`}
+                                    >
+                                        {Capitalize(slug)}
+                                    </Link>
+                                </li>
+                            );
+                        })
+                    )}
                 </ul>
             </div>
             {loggedInUser === "" ? (
