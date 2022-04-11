@@ -7,6 +7,7 @@ Nortcoders news is a frontend application to display data received from backend 
 It was created during my time with Nortcoders as my frontend solo project.
 
 Hosted version link:
+https://heartfelt-capybara-253e73.netlify.app/
 
 API github link:
 https://github.com/Izdrathi/NC-news-backend
